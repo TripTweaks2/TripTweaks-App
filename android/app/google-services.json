@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "293882735832",
+    "project_id": "tesis2024-ee2bc",
+    "storage_bucket": "tesis2024-ee2bc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:293882735832:android:de2b5a7e7a984df6787bad",
+        "android_client_info": {
+          "package_name": "com.example.tesis3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "293882735832-rq48kfnnmfd9h6h07idbkqjls7a9eeg7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tesis3",
+            "certificate_hash": "4f33b577cebd4f91d2b74a51df2a340e571e6993"
+          }
+        },
+        {
+          "client_id": "293882735832-8r3bruv1vdk646h80d1i4l99bec2u3c5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIoxKn4KQZYtyoa1pC8nLsoH8GxgyLVew"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "293882735832-8r3bruv1vdk646h80d1i4l99bec2u3c5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "293882735832-7v7p9bbtks292c4hde1th9e5fbfehqdq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.tesis3"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
