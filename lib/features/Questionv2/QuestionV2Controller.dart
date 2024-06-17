@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:tesis3/utils/constants/api_constants.dart';
 
 
 class QuestionV2Controller extends GetxController {
@@ -21,7 +22,7 @@ class QuestionV2Controller extends GetxController {
 
     try {
       final response = await http.get(Uri.parse(
-          'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$query&region=pe&key=AIzaSyBBKmww5PM0o7wdf48ibmyI4Ogpkxcol3g'));
+          'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$query&region=pe&key='+ApiConstants.secretApiKeyGoogleMaps));
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);

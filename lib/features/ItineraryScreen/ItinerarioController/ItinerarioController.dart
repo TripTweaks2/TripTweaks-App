@@ -238,5 +238,61 @@ class ItinerarioController extends GetxController{
     }
   }
 
+  Future<void> fetchRecommendedItinerarios({
+    required double latitud,
+    required double longitud,
+    required String categoria,
+  }) async {
+    final url = Uri.parse(
+      'https://triptweaks-backend.onrender.com/recommend?LATITUD=$latitud&LONGITUD=$longitud&CATEGORIA=$categoria',
+    );
 
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      final List<dynamic> data = jsonDecode(response.body);
+      final controller = UserController.instance;
+      final List<PlaceItinerary> places = [];
+
+      for (var i = 0; i < data.length; i++) {
+        final place = data[i];
+        final uuid = Uuid();
+        final id = uuid.v4();
+        final day = (i ~/ 6) + 1; // Calcula el día, asumiendo 6 lugares por día
+        final time = generateTime(i % 6); // Genera la hora dentro del rango del día
+
+        final placeItinerary = PlaceItinerary(
+          name: place['NOMBRE'],
+          rating: 0.0, // No hay rating en la respuesta, así que se pone 0.0
+          latitude: place['LATITUD'],
+          longitude: place['LONGITUD'],
+          types: [place['CATEGORIA']],
+          photo_reference: '', // No hay foto en la respuesta, así que se deja vacío
+          time: time,
+          id: id,
+          day: day,
+        );
+
+        places.add(placeItinerary);
+      }
+
+      final random = Random();
+      final DateTime horaActual = DateTime.now();
+      final String fechaConHora = DateFormat('dd/MM/yyyy - HH:mm').format(horaActual);
+
+      final itinerario = ItinerarioV2(
+        idUser: controller.user.value.id,
+        name: 'Itinerario ${random.nextInt(1000)}',
+        places: places,
+        hour: fechaConHora,
+        idItinerario: '', // Vacío por ahora, se asignará después de guardarlo en Firestore
+      );
+
+      // Añadimos el itinerario a la lista de itinerarios locales
+      addItinerarioV2(itinerario);
+      await itinerarioRepository.saveItinerarioV2(itinerario);
+    } else {
+      print('Error al obtener recomendaciones: ${response.statusCode}');
+    }
+  }
 }

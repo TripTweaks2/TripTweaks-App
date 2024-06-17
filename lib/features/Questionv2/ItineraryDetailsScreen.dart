@@ -17,6 +17,7 @@ import 'package:tesis3/utils/constants/sizes.dart';
 import '../../common/widgets/Icons/CircularIcon.dart';
 import '../../common/widgets/app_bar/appBar.dart';
 import '../../localization/MapLocalization.dart';
+import '../../utils/constants/api_constants.dart';
 import '../../utils/constants/images_string.dart';
 import '../../utils/popups/fullScreenLoader.dart';
 import '../ItineraryScreen/ItinerarioController/ItinerarioController.dart';
@@ -46,7 +47,7 @@ class _ItineraryDetailsScreenState extends State<ItineraryDetailsScreen> {
 
   String _buildPhotoUrl(String photoReference) {
     // Construir la URL según la referencia de la foto
-    return 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=$photoReference&key=AIzaSyBBKmww5PM0o7wdf48ibmyI4Ogpkxcol3g';
+    return 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=$photoReference&key='+ApiConstants.secretApiKeyGoogleMaps;
   }
 
   Future<void> eliminarLugarDeItinerario(String lugarId) async {
